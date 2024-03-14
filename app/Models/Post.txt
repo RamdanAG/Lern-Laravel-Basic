@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+class Post
+{
+    private static $blog_posts = [[
+        "title" => "Judul post pertama",
+        "slug" => "judul-post-pertama",
+        "author" => "Ramdan Abdul Gani",
+        "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus eius et fugit molestias! Iure, numquam! Odio omnis dignissimos corrupti molestias repellendus laudantium eligendi atque. Modi maxime fuga error enim commodi!"
+    ],
+    [
+        "title" => "Judul post kedua",
+        "slug" => "judul-post-kedua",
+        "author" => "Wanda Puspa Meycilla",
+        "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus eius et fugit molestias! Iure, numquam! Odio omnis dignissimos corrupti molestias repellendus laudantium eligendi atque. Modi maxime fuga error enim commodi!"
+    ]
+    ];
+
+    public static function all()
+    {
+        return collect(self::$blog_posts);
+    }
+
+    public static function find($slug)
+    {
+        $posts = static::all();
+        // $post = [];
+        // foreach($posts as $p){
+        //     if($p["slug"] === $slug){
+        //         $posts = $p;
+        //     }
+        // }
+
+        return $posts->firstWhere('slug', $slug);
+    }
+}
